@@ -1,3 +1,57 @@
-h1 {
-    text-align: center;
+.homePage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.roomForm{
+    border: solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+
+.roomForm p{
+    font-size: 35px;
+    margin: 10px;
+}
+
+.roomForm input{
+    width: 90%;
+    font-size: 25px;
+    margin: 10px;
+}
+
+.rooms{
+    width: 85%;
+    border: solid black;
+    display: flex;
+    flex-direction: column;
+}
+.rooms button{
+    font-size: 25px;
+    cursor: pointer;
+    color: black;
+    background-color: white;
+}
+
+.rooms button:hover{
+    color: white;
+    background-color: black;
+}
+
+button.joinRoom{
+    font-size: 35px;
+    margin: 15px;
+    padding: 10px 50px;
+    border-radius: 25px;
+    color: black;
+    background-color: white;
+}
+
+button.joinRoom:hover{
+    cursor: pointer;
+    color: white;
+    background-color: black;
 }
