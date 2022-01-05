@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './index.css'
+import { v4 as uuidv4} from 'uuid';
 
 const Home = ({name, setName}) => {
     const numbers = [];
@@ -8,6 +9,9 @@ const Home = ({name, setName}) => {
     const history = useHistory()
     for (let i = 1; i <= 5; i++){
         numbers.push(i);
+    }
+    const joinRoomHandler = () => {
+        if (buttonNumber) history.push(`/chatRoom/${buttonNumber}`)
     }
     return (
         <>
@@ -18,9 +22,9 @@ const Home = ({name, setName}) => {
                     <input value={name} onChange={(e) => {setName(e.target.value)}}/>
                     <p>What room do you want to enter</p>
                     <div className='rooms'>
-                        {numbers?.map((number) => <button onClick={() => {setButtonNumber(number)}} style={number === buttonNumber?{color: 'white', backgroundColor: 'black'}:null}>{`Room #${number}`}</button>)}
+                        {numbers?.map((number) => <button key={uuidv4()} onClick={() => {setButtonNumber(number)}} style={number === buttonNumber?{color: 'white', backgroundColor: 'black'}:null}>{`Room #${number}`}</button>)}
                     </div>
-                    <button className='joinRoom' onClick={() => {history.push(`/chatRoom/${buttonNumber}`)}}>Join Room</button>
+                    <button className='joinRoom' onClick={() => {joinRoomHandler()}}>Join Room</button>
                 </div>
             </div>
         </>
