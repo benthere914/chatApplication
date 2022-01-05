@@ -1,0 +1,72 @@
+.chatRoomTitle{
+    font-size: 45px;
+    text-align: center;
+    position: relative;
+    top: 2vh;
+}
+
+div.messageBoard{
+    border: solid black;
+    width: 50vw;
+    height: 80vh;
+    position: relative;
+    top: 1vh;
+    left: 25vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.sendMessage{
+    /* border: solid black; */
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+
+.sendMessage input{
+    font-size: 25px;
+    width: 700px;
+    padding: 5px;
+}
+
+.sendMessage button{
+    width: 100px;
+}
+
+
+.yourMessage{
+    width: 350px;
+    position: absolute;
+    left: 0;
+    display: flex;
+    align-items: center;
+
+}
+
+.myMessage{
+    width: 350px;
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.messageAuthor{
+    border-radius: 50%;
+    color: white;
+    background-color: purple;
+    font-size: 25px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.messageText{
+    font-size: 35px;
+    margin: 10px;
+}
