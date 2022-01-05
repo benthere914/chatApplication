@@ -14,7 +14,7 @@ function App() {
                     <Home name={name} setName={setName}/>
                 </Route>
                 <Route path='/chatRoom/:chatRoomId'>
-                    <HomeButton/>
+                    <HomeButton setName={setName}/>
                     <Chat name={name}/>
                 </Route>
 			</Switch>
