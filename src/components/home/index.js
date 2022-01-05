@@ -5,15 +5,15 @@ import { v4 as uuidv4} from 'uuid';
 
 const Home = ({name, setName, setId}) => {
     const numbers = [];
-    const [buttonNumber, setButtonNumber] = useState(0)
+    const [roomId, setRoomId] = useState('')
     const history = useHistory()
     for (let i = 1; i <= 5; i++){
         numbers.push(i);
     }
     const joinRoomHandler = () => {
-        if (buttonNumber) {
+        if (roomId) {
             setId(uuidv4())
-            history.push(`/chatRoom/${buttonNumber}`)
+            history.push(`/chatRoom/${roomId}`)
         }
     }
     return (
@@ -25,7 +25,8 @@ const Home = ({name, setName, setId}) => {
                     <input value={name} onChange={(e) => {setName(e.target.value)}}/>
                     <p>What room do you want to enter</p>
                     <div className='rooms'>
-                        {numbers?.map((number) => <button key={uuidv4()} onClick={() => {setButtonNumber(number)}} style={number === buttonNumber?{color: 'white', backgroundColor: 'black'}:null}>{`Room #${number}`}</button>)}
+                        {numbers?.map((number) => <button key={uuidv4()} onClick={() => {setRoomId(`${number}`);}} style={`${number}` === roomId?{color: 'white', backgroundColor: 'black'}:null}>{`Room ${number}`}</button>)}
+                        <input value={roomId} onChange={(e) => {setRoomId(e.target.value)}}/>
                     </div>
                     <button className='joinRoom' onClick={() => {joinRoomHandler()}}>Join Room</button>
                 </div>
