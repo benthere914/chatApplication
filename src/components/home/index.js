@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './index.css'
 import { v4 as uuidv4} from 'uuid';
 
-const Home = ({name, setName}) => {
+const Home = ({name, setName, setId}) => {
     const numbers = [];
     const [buttonNumber, setButtonNumber] = useState(0)
     const history = useHistory()
@@ -11,7 +11,10 @@ const Home = ({name, setName}) => {
         numbers.push(i);
     }
     const joinRoomHandler = () => {
-        if (buttonNumber) history.push(`/chatRoom/${buttonNumber}`)
+        if (buttonNumber) {
+            setId(uuidv4())
+            history.push(`/chatRoom/${buttonNumber}`)
+        }
     }
     return (
         <>
