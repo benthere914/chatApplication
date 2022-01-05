@@ -11,7 +11,7 @@ const Chat = ({name, authorId}) => {
     }
     return (
         <>
-            <p className='chatRoomTitle'>{`Welcome ${name} to chat room #${params?.chatRoomId}`}</p>
+            <p className='chatRoomTitle'>{`Welcome ${name!==''?name:'??'} to chat room #${params?.chatRoomId}`}</p>
             <div className='messageBoard'>
 
                 <div className="messages">
