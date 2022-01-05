@@ -1,0 +1,8 @@
+.homeButton{
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    cursor: pointer;
+}
