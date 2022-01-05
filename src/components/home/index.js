@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './index.css'
 
-const Home = () => {
-    const [name, setName] = useState('')
+const Home = ({name, setName}) => {
     const numbers = [];
     const [buttonNumber, setButtonNumber] = useState(0)
+    const history = useHistory()
     for (let i = 1; i <= 5; i++){
         numbers.push(i);
     }
@@ -19,7 +20,7 @@ const Home = () => {
                     <div className='rooms'>
                         {numbers?.map((number) => <button onClick={() => {setButtonNumber(number)}} style={number === buttonNumber?{color: 'white', backgroundColor: 'black'}:null}>{`Room #${number}`}</button>)}
                     </div>
-                    <button className='joinRoom'>Join Room</button>
+                    <button className='joinRoom' onClick={() => {history.push(`/chatRoom/${buttonNumber}`)}}>Join Room</button>
                 </div>
             </div>
         </>
