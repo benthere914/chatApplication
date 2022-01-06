@@ -1,16 +1,26 @@
-import './index.css'
-import { useParams } from "react-router-dom/cjs/react-router-dom.min"
-import { useState } from 'react'
+import './index.css';
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useEffect, useState } from 'react';
 import { v4 as uuidv4} from 'uuid';
-
+import { io } from 'socket.io-client';
+let socket;
 const Chat = ({name, authorId}) => {
     const params = useParams()
     const [newMessage, setNewMessage] = useState('')
     const [messages, setMessages] = useState([])
+
+    useEffect(() => {
+        socket = io('http://localhost:5000');
+        socket.emit('joinRoom', params?.chatRoomId)
+        socket.on("chat", (chat) => {setMessages((prev) => [...prev, chat])})
+        return (() => {socket.disconnect()})
+    }, [params])
+
     const sendMessageHandler = () => {
-        setMessages((prev) => [...prev, {authorId, name, message: newMessage}]);
+        socket.emit("chat", {authorId, name, message: newMessage, roomId: params?.chatRoomId})
         setNewMessage('')
     }
+
     return (
         <>
             <p className='chatRoomTitle'>{`Welcome ${name!==''?name:'??'} to chat room ${params?.chatRoomId}`}</p>
