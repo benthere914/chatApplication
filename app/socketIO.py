@@ -21,8 +21,20 @@ def send_chat_out(chatData):
     new_message = {'authorId': chatData['authorId'], 'name': chatData['name'], "message": chatData['message']}
     emit("chat", new_message, broadCast=True, include_self=True, room=room)
 
-
+rooms = {}
 @socketio.on("joinRoom")
 def join_current_room(room):
     print("JOINING ******************", room)
     join_room(room)
+    if (room in rooms):
+        rooms[room] += 1
+    else:
+        rooms[room] = 1
+    emit('updateRoomNumber', rooms[room], broadcast=True, include_self=True, room=room)
+
+@socketio.on("leaveRoom")
+def leave_current_room(room):
+    print("LEAVING ******************", room)
+    leave_room(room)
+    rooms[room] -= 1
+    emit('updateRoomNumber', rooms[room], broadcast=True, include_self=True, room=room)

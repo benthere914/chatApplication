@@ -5,8 +5,13 @@
     top: 2vh;
 }
 
+.numberInRoom{
+    font-size: 25px;
+    text-align: center;
+    margin: 0;
+}
+
 div.messageBoard{
-    border: solid black;
     width: 50vw;
     height: 80vh;
     position: relative;

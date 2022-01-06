@@ -8,10 +8,12 @@ const Chat = ({name, authorId}) => {
     const params = useParams()
     const [newMessage, setNewMessage] = useState('')
     const [messages, setMessages] = useState([])
+    const [users, setUsers] = useState(0)
 
     useEffect(() => {
         socket = io('http://localhost:5000');
         socket.emit('joinRoom', params?.chatRoomId)
+        socket.on('updateRoomNumber', (inRoom) => {setUsers(inRoom)})
         socket.on("chat", (chat) => {setMessages((prev) => [...prev, chat])})
         return (() => {socket.disconnect()})
     }, [params])
@@ -24,6 +26,7 @@ const Chat = ({name, authorId}) => {
     return (
         <>
             <p className='chatRoomTitle'>{`Welcome ${name!==''?name:'??'} to chat room ${params?.chatRoomId}`}</p>
+            <p className='numberInRoom'>There {users > 1?'are':'is'} {users} {users === 1?'person':'people'} in this room</p>
             <div className='messageBoard'>
 
                 <div className="messages">
